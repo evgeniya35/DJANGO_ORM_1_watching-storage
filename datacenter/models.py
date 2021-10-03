@@ -1,4 +1,13 @@
 from django.db import models
+from django.utils.timezone import localtime
+
+def is_visit_long(visit, minutes=60):
+    if visit.leaved_at != None: 
+        duration = visit.leaved_at - visit.entered_at
+    else:
+        duration = localtime() - visit.entered_at
+    totalMinute, second = divmod(duration.seconds, 60)
+    return totalMinute > minutes
 
 
 class Passcard(models.Model):
