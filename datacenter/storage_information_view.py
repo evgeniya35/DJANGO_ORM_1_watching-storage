@@ -1,5 +1,6 @@
 from datacenter.models import Passcard
 from datacenter.models import Visit
+from datacenter.models import is_visit_long
 from django.shortcuts import render
 from django.utils.timezone import localtime
 from datetime import timedelta
@@ -12,7 +13,7 @@ def get_duration(timeVisit):
 def format_duration(durationVisit):
     totalMinute, second = divmod(durationVisit.seconds, 60)
     hour, minute = divmod(totalMinute, 60)
-    return (f"{hour}ч {minute:02}мин {second:02}сек")
+    return (f"{hour}:{minute:02}")
 
 
 def storage_information_view(request):
@@ -22,7 +23,8 @@ def storage_information_view(request):
         non_closed_visits.append({
             'who_entered': visit.passcard.owner_name,
             'entered_at': visit.entered_at,
-            'duration': format_duration(get_duration(visit.entered_at))
+            'duration': format_duration(get_duration(visit.entered_at)),
+            'is_strange': is_visit_long(visit)
         })
 
     context = {

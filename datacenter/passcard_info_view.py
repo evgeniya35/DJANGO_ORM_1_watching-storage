@@ -14,7 +14,7 @@ def get_duration(entered_at, leaved_at):
 def format_duration(durationVisit):
     totalMinute, second = divmod(durationVisit.seconds, 60)
     hour, minute = divmod(totalMinute, 60)
-    return (f"{hour}ч {minute:02}мин {second:02}сек")
+    return (f"{hour}:{minute:02}:{second:02}")
 
 
 def passcard_info_view(request, passcode):
