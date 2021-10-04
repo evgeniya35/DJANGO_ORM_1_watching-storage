@@ -6,14 +6,15 @@ from django.utils.timezone import localtime
 from datetime import timedelta
 
 
-def get_duration(timeVisit):
-    return localtime() - timeVisit
+def get_duration(time_visit):
+    return localtime() - time_visit
 
 
-def format_duration(durationVisit):
-    totalMinute, second = divmod(durationVisit.seconds, 60)
-    hour, minute = divmod(totalMinute, 60)
-    return (f"{hour}:{minute:02}")
+def format_duration(duration_visit):
+    total_seconds = duration_visit.total_seconds()
+    total_hours = int(total_seconds // 3600)
+    total_minute = int((total_seconds % 3600) // 60)
+    return (f"{total_hours}:{total_minute:02}")
 
 
 def storage_information_view(request):
