@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.timezone import localtime
 
+
 def is_visit_long(visit, minutes=60):
-    if visit.leaved_at != None: 
+    if visit.leaved_at is not None:
         duration = visit.leaved_at - visit.entered_at
     else:
         duration = localtime() - visit.entered_at

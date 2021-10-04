@@ -4,19 +4,21 @@ from datacenter.models import is_visit_long
 from django.shortcuts import render
 from django.utils.timezone import localtime
 
+
 def get_duration(entered_at, leaved_at):
-    if leaved_at == None:
+    if leaved_at is None:
         leaved_at = localtime()
     return leaved_at - entered_at
+
 
 def format_duration(durationVisit):
     totalMinute, second = divmod(durationVisit.seconds, 60)
     hour, minute = divmod(totalMinute, 60)
     return (f"{hour}ч {minute:02}мин {second:02}сек")
 
+
 def passcard_info_view(request, passcode):
     passcard = Passcard.objects.filter(passcode=passcode).get()
-    # Программируем здесь
     visits = Visit.objects.filter(passcard=passcard)
     this_passcard_visits = []
     for visit in visits:
