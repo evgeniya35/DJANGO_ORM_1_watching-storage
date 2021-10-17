@@ -1,17 +1,17 @@
 import os
-from dotenv import load_dotenv, find_dotenv
-from distutils.util import strtobool
+from environs import Env
 
-load_dotenv(find_dotenv())
+env = Env()
+env.read_env()
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('ENGINE'),
-        'HOST': os.environ.get('HOST'),
-        'PORT': os.environ.get('PORT'),
-        'NAME': os.environ.get('NAME'),
-        'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'),
+        'ENGINE': env('ENGINE'),
+        'HOST': env('HOST'),
+        'PORT': env.int('PORT'),
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
     }
 }
 
@@ -19,7 +19,7 @@ INSTALLED_APPS = ['datacenter']
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = bool(strtobool(os.environ.get('DEBUG').lower()))
+DEBUG = env.bool('DEBUG')
 
 ROOT_URLCONF = 'project.urls'
 
