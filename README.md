@@ -17,6 +17,20 @@ pip install -r requirements.txt
 ### Переменные окружения
 
 - Отредактируйте `.env` для настройки подключения к БД.
+пример `.env.example`:
+```
+SECRET_KEY=REPLACE_ME
+
+# Database settings
+ENGINE=django.db.backends.postgresql_psycopg2
+HOST=you.host.database
+PORT=5434
+NAME=database_name
+USER=db_user
+PASSWORD=db_password
+
+DEBUG=False
+```
 
 #### Запуск
 
