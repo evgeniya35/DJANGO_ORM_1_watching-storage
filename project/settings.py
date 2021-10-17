@@ -3,7 +3,6 @@ from dotenv import load_dotenv, find_dotenv
 from distutils.util import strtobool
 
 load_dotenv(find_dotenv())
-TOKEN = os.environ.get('TOKEN')
 
 DATABASES = {
     'default': {
