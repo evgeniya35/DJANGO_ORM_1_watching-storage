@@ -16,15 +16,18 @@ pip install -r requirements.txt
 
 ### Переменные окружения
 
-- Отредактируйте `.env` для необходимых настроек. Настройка подключения к БД в `DB_URL=postgres://USER:PASSWORD@HOST:PORT/NAME`,
-пример `.env.example`:
+Отредактируйте `.env` для необходимых настроек:
+* `DB_URL=postgres://USER:PASSWORD@HOST:PORT/NAME` настройка подключения к БД.
+* `ALLOWED_HOSTS=127.0.0.1,localhost` cписок хостов/доменов, для которых может работать текущий сайт.
+Пример `.env.example`:
 ```
 SECRET_KEY=REPLACE_ME
 
-# Database settings
 DB_URL=postgres://USER:PASSWORD@HOST:PORT/NAME
 
 DEBUG=False
+
+ALLOWED_HOSTS=127.0.0.1,localhost
 ```
 
 #### Запуск
